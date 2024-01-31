@@ -1,0 +1,112 @@
+h2 {
+    text-align: center;
+    margin: .5em;
+}
+
+
+/* #footer {
+    background-color: green;
+} */
+
+.container-p {
+    min-height: 100vh;
+}
+
+#card1 {
+    text-align: center;
+    z-index: 1;
+}
+
+p {
+    display: inline;
+    font-size: 13px;
+}
+
+.aForget,
+.aRegister {
+    font-size: 13px;
+}
+
+.logoheader {
+    display: inline;
+}
+
+.sen1 {
+    background-color: rgb(57, 106, 177);
+    color: white;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.sen2 {
+    background-color: rgb(218, 124, 48);
+    color: white;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.sen3 {
+    background-color: rgb(62, 150, 81);
+    color: white;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.sen4 {
+    background-color: rgb(204, 37, 41);
+    color: white;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+#value1 {
+    padding: 10px;
+    margin-left: 15px;
+}
+
+#value2 {
+    padding: 10px;
+    margin-left: 15px;
+}
+
+#value3 {
+    padding: 10px;
+    margin-left: 15px;
+}
+
+#value4 {
+    padding: 10px;
+    margin-left: 15px;
+}
+
+
+/* login */
+
+.father {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.child {
+    width: 400px;
+    border: rgb(235, 233, 233) solid 2px;
+    padding: 20px;
+    box-shadow: 1px 1px 5px rgb(235, 232, 232);
+}
+
+
+/* registro */
+
+.father {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.child {
+    width: 400px;
+    border: rgb(235, 233, 233) solid 2px;
+    padding: 20px;
+    box-shadow: 1px 1px 5px rgb(235, 232, 232);
+}

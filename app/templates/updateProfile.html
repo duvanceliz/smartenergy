@@ -1,0 +1,65 @@
+{% extends 'layout.html' %} {% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1>update profile</h1>
+
+            {% with messages = get_flashed_messages(category_filter=['exito']) %} {% if messages %} {% for message in messages %}
+
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>{{message}}</strong>
+            </div>
+
+            {% endfor %} {% endif %} {% endwith %}
+
+            <form action="{{url_for('updateProfile')}}" method="POST">
+
+
+
+                <input type="text" name="id" value="{{user.id}}" hidden>
+
+                <div class="mb-3">
+                    <label for="nombreUsuario" class="form-label mt-2">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="nombreUsuario" name="nombre" value="{{user.nombre}}">
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label mt-2">Correo Electronico</label>
+                    <input type="text" class="form-control" id="email" name='clave' value="{{user.email}}">
+                </div>
+
+                <div class="text-center">
+
+                    <button type="submit" class="btn btn-primary" onclick="return verificar();">Actualizar</button>
+
+                </div>
+
+
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+
+    </div>
+</div>
+
+<script>
+    function verificar() {
+
+        let resultado = window.confirm('Estas seguro?');
+        if (resultado === true) {
+            return true
+        } else {
+            return false
+        }
+
+    }
+</script>
+
+
+
+{% endblock %}

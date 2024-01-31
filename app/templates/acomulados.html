@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+<h2>ACOMULADOS</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8" id="chart1">
+      <div class="card">
+        <canvas id="myChart" width="200" height="100"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-2">
+    </div>
+  </div>
+  <form action="{{url_for('acomulados')}}" method="POST">
+    <div class="row">
+      <div class="col-md-3">
+        <label class="mt-2">Selecione el sensor</label>
+        <select class="form-select" id="exampleSelect1" name="sensorType">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+
+      </div>
+      <div class="col-md-3">
+
+        <label class="mt-2">Fecha</label><br>
+        <input type="date" class="form-control" id="start" name="date" min="2021-01-01" max="2022-12-31">
+
+      </div>
+      <div class="col-md-3">
+        <label class="mt-2"> Hora:(hh:mm:ss) </label>
+        <input type="text" class="form-control" placeholder="Ejemplo 14:20" aria-label="Zip" name="time">
+      </div>
+      <div class="col-md-3">
+        <label for=""></label>
+        <div class="d-grid gap-2 mt-2">
+          <button type="submit" class="btn btn-primary">Consultar datos</button>
+        </div>
+
+      </div>
+
+    </div>
+  </form>
+</div>
+
+
+
+<script>
+  const config = {
+    type: 'line',
+    data: {
+      labels: [{% for dato in wSensor20 %}
+        "{{ dato.fecha.strftime('%H:%M:%S') }}",
+       {% endfor %}],
+  datasets: [{
+    label: '{{label}}',
+    borderColor: '{{color}}',
+    data: [{% for dato in wSensor20 %}
+          {{ dato.dato }},
+  {% endfor %}],
+    tension: 0.3,
+      fill: false,
+        showLine: true,
+          spanGaps: false,
+
+    }],
+    },
+  options: {
+
+    plugins: {
+      title: {
+        display: true,
+          text: '{{name}}'
+      },
+
+    },
+
+  },
+
+    
+};
+  var ctx = document.getElementById('myChart').getContext('2d');
+  grafica = new Chart(ctx, config);
+</script>
+
+
+{% endblock %}

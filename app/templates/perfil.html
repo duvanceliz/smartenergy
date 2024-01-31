@@ -1,0 +1,146 @@
+{% extends 'layout.html' %} {% block body %}
+<style>
+
+</style>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2">
+            {% if current_user.is_authenticated %}
+            <h3 style="margin: .2em;"><i class="bi bi-person-circle me-2"></i>{{user.nombre}}</h3>
+            {% endif %}
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action list-group-item-dark active">Opciones</a>
+                <a href="{{url_for('acomulados')}}" class="list-group-item list-group-item-action">Acomulados</a>
+                <a href="{{url_for('downloadData')}}" class="list-group-item list-group-item-action">Descargar datos</a>
+                <a href="{{url_for('updateProfile')}}" class="list-group-item list-group-item-action">Actualizar perfil</a>
+                <a href="{{url_for('device')}}" class="list-group-item list-group-item-action">Dispositivos</a>
+
+            </div>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill p-2"></i><strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="col-lg-3  text-center">
+                        <div class="sen1">
+                            <h4>Voltaje:</h4> <strong id="value1">Off-Line</strong>V</div>
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <div class="sen2">
+                            <h4>Corriente:</h4> <strong id="value2">Off-Line</strong>A</div>
+                    </div>
+                    <div class="col-lg-3  text-center">
+                        <div class="sen3">
+                            <h4>Potencia:</h4> <strong id="value3">Off-Line</strong>W</div>
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <div class="sen4">
+                            <h4>FP:</h4> <strong id="value4">Off-Line</strong>%</div>
+                    </div>
+
+                </div>
+                <div class="row mb-4 mt-4">
+                    <div class="col-md-6 border rounded">
+                        <canvas id="myChart" width="300" height="200"></canvas>
+                    </div>
+                    <div class="col-md-6 border rounded">
+                        <canvas id="myChart2" width="300" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="row mb-4 mt-4">
+                    <div class="col-md-6 border rounded">
+                        <canvas id="myChart3" width="300" height="200"></canvas>
+                    </div>
+                    <div class="col-md-6 border rounded">
+                        <canvas id="myChart4" width="300" height="200"></canvas>
+                    </div>
+                </div>
+
+
+                <div class="row mb-4">
+
+                    <div class="col-md-6 border rounded">
+                        <canvas id="myChart5" width="300" height="200"></canvas>
+                    </div>
+                    <div class="col-md-4 border rounded mx-auto">
+
+                        <canvas id="myChart6" width="300" height="200"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row mb-4">
+                    <div class="col-md-6 border">
+
+
+                    </div>
+
+                    <div class="col-md-6 border rounded">
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div class="col-md-2 p-4">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total a Pagar</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Valor Aproximado</h6>
+                    <h4>$148.450</h4>
+                    <a href="{{url_for('acomulados')}}" class="card-link">Base de Datos</a> <br>
+                    <a href="{{url_for('downloadData')}}" class="card-link">Descargar datos</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Promedio últimos 6 meses</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">--</h6>
+                    <h4>262 KWh</h4>
+                    <a href="{{url_for('acomulados')}}" class="card-link">Base de Datos</a> <br>
+                    <a href="{{url_for('downloadData')}}" class="card-link">Descargar datos</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Promedio por Dia</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">--</h6>
+                    <h4>8,69 KWh</h4>
+                    <a href="{{url_for('acomulados')}}" class="card-link">Base de Datos</a> <br>
+                    <a href="{{url_for('downloadData')}}" class="card-link">Descargar datos</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- charts -->
+<script src="{{ url_for('static', filename='js/chart1.js')}}"></script>
+<script src="{{ url_for('static', filename='js/chart2.js')}}"></script>
+<script src="{{ url_for('static', filename='js/chart3.js')}}"></script>
+<script src="{{ url_for('static', filename='js/chart4.js')}}"></script>
+<script src="{{ url_for('static', filename='js/chart5.js')}}"></script>
+<script src="{{ url_for('static', filename='js/chart6.js')}}"></script>
+
+
+
+{% endblock %}

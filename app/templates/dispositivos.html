@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+<h2>Dispositivos Inteligentes</h2>
+
+<div class="container">
+  <div class="row mb-4">
+    {% with messages = get_flashed_messages(category_filter=['exito']) %} {% if messages %} {% for message in messages
+    %}
+
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong>{{message}}</strong>
+    </div>
+
+    {% endfor %} {% endif %} {% endwith %}
+
+    <a href="{{url_for('agregardispositivo')}}" class="card-link">Agregar un dispositivo</a>
+  </div>
+  <div class="row row-cols-4">
+    
+    {% for device in deviceQuery %}
+    <div class="col">
+
+      <form action="{{url_for('devicestatus')}}" method="POST">
+        <input type="text" value="{{device.id}}" name="id" hidden >
+        <h6>{{device.nombre}}</h6>
+        {% if device.status %}
+       <h6> ON</h6>
+       <button type="submit">Desactivar</button>
+        {% else %}
+       <h6> OFF </h6>
+       <button type="submit">Activar</button>
+        {% endif %}
+        
+        
+
+      </form>
+      <!-- <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{device.nombre}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted" id="estado">Estado:OFF</h6>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="CheckChecked" value="{{device.id}}" onclick="statusSend()">
+
+          </div>
+          <span>Programar Hora:</span>
+          <form action="#">
+            <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+            <input type="submit">
+          </form>
+          <a href="{{url_for('acomulados')}}" class="card-link">Metricas</a> <br>
+          <a href="{{url_for('downloadData')}}" class="card-link">Descargar datos</a>
+        </div>
+      </div> -->
+     
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+<script>
+  var check = document.getElementById('CheckChecked');
+  var estado = document.getElementById('estado');
+  //console.log(check)
+
+  function statusSend(){
+
+    const datos = {
+      id: check.value,
+      status: check.checked
+    }
+
+    fetch('/devicestatus', {
+
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers: { 'Content-Type': 'application/json' },
+
+    })
+      .then(function (respuesta) {
+        return respuesta.json();
+      })
+      .then(function (respuesta) {
+        console.log(respuesta)
+      })
+
+  }
+  // check.addEventListener('click', function () {
+ 
+  
+  //   if (check.checked) {
+  //     estado.innerText = "Estado:ON"
+  //   } else {
+  //     estado.innerText = "Estado:OFF"
+  //   }
+
+  //   const datos = {
+  //     id: check.value,
+  //     status: check.checked
+  //   }
+
+  //   fetch('/devicestatus', {
+
+  //     method: 'post',
+  //     body: JSON.stringify(datos),
+  //     headers: { 'Content-Type': 'application/json' },
+
+  //   })
+  //     .then(function (respuesta) {
+  //       return respuesta.json();
+  //     })
+  //     .then(function (respuesta) {
+  //       console.log(respuesta)
+  //     })
+  // })
+  //location.reload();
+</script>
+{% endblock %}
